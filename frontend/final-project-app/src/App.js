@@ -8,7 +8,7 @@ import './App.css';
 //import components
 import Appbar from './components/Appbar';
 import Homepage from './components/Homepage';
-
+import Theater from './components/Theater';
 
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
 
 				<Routes>
 					<Route exact path="/" element={<Homepage/>}/>
+					<Route exact path="/theater" element={<Theater/>}/>
 				</Routes>
 			</Router>
 			
