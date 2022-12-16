@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
     data = {
         "Modules": 15,
-        "Subject" : "Data orihgdpote and Algorithms"
+        "Subject" : "Data otidhpote and Algorithms"
     }
     return jsonify(data)
     
