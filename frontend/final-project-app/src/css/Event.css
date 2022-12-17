@@ -8,10 +8,11 @@
 
 .event-container {
     background-color: white;
-    height: 1000px;
+    height: 100%;
 
     border-radius: 20px;
     /* margin-top: 200px; */
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .image-event {
@@ -69,4 +70,64 @@
 
 .event-desc p {
     color: #2a2a2a;
+}
+
+.event-alert {
+    padding: 0px 20px 20px !important;
+    border: 1px
+}
+
+.ticket-modal {
+    /* background-color: white !important; */
+    border: 1px solid #252525 !important;
+}
+
+.book-ticket-button:hover{
+    background-color: #008535 !important;
+}
+
+.book-ticket-button {
+    /* margin-top: 30px !important; */
+    background-color: #00ab44 !important;
+    box-shadow: none !important;
+    color: white !important;
+    width: 100%;
+    border-radius: 20px !important;
+}
+
+.tf-ticket-stack {
+    margin-top: 40px !important;
+}
+
+.modal-title {
+    font-family: pf_highway_sans_pro_mediumRg, arial, sans-serif;
+    color: #0d101a;
+
+    font-weight: 600 !important;
+}
+
+.modal-text {
+    color: #0d101a;
+}
+
+.ticket-modal {
+    border-radius: 20px;
+    border: none !important;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+}
+
+.modal-number-button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.ticket-number-tf {
+    width: 100%;
+}
+
+.ticket-number-tf-container {
+    width: 140px;
 }

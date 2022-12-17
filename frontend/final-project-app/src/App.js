@@ -10,6 +10,7 @@ import Appbar from './components/Appbar';
 import Homepage from './components/Homepage';
 import Theater from './components/Theater';
 import Eventpage from './components/Eventpage';
+import Test from './components/Test';
 
 function App() {
 
@@ -24,7 +25,8 @@ function App() {
 					<Route exact path="/" element={<Homepage/>}/>
 					<Route exact path="/theater" element={<Theater/>}/>
 					<Route exact path="/event" element={<Eventpage/>}/>
-
+					<Route exact path="/test" element={<Test/>}/>
+					
 				</Routes>
 			</Router>
 			

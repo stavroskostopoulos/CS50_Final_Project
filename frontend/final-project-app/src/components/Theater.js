@@ -155,6 +155,7 @@ function Theater() {
                 </div>
                 
             </div>
+            <div className="blank-fragment"></div>
         </div>
   )
 }
