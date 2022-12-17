@@ -9,7 +9,7 @@ import './App.css';
 import Appbar from './components/Appbar';
 import Homepage from './components/Homepage';
 import Theater from './components/Theater';
-
+import Eventpage from './components/Eventpage';
 
 function App() {
 
@@ -23,6 +23,8 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<Homepage/>}/>
 					<Route exact path="/theater" element={<Theater/>}/>
+					<Route exact path="/event" element={<Eventpage/>}/>
+
 				</Routes>
 			</Router>
 			
