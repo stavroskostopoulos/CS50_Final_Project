@@ -16,7 +16,7 @@ def index():
     conn = get_db_connection()
     popular = conn.execute('SELECT * FROM events ORDER BY RANDOM() LIMIT 12').fetchall()
     print(popular)
-    print(type(popular))
+    # print(type(popular))
     conn.close()
-    return json.dumps(popular, default=str)
+    return jsonify([dict(ix) for ix in popular])
     
