@@ -105,165 +105,197 @@ function Homepage() {
             <div className='homepage-container popular-homepage-container'>
                 <h2 className='popular-title'>Popular</h2>
                 <p className='popular-description'>The audience's favorites</p>
-                <Swiper
-                    spaceBetween={8}
-                    slidesPerView={4}
-                    onSlideChange={() => console.log('slide change')}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    className='popular-slider'
-                    >
-                    <SwiperSlide>
-                        <Card className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
-                            <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                height="160"
-                                image={sliderarctic}
-                                alt="green iguana"
-                                />
-                                <CardContent className='card-content'>
-                                    <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
-                                        18 JULY
-                                    </Typography>
-                                    <Typography gutterBottom variant="h5" component="div" className='card-text'>
-                                        Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary" className='card-text-info'>    
-                                        Πλατεια Νερου, Φαληρο
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                    <Card className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
-                            <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                height="160"
-                                image={sliderarctic}
-                                alt="green iguana"
-                                />
-                                <CardContent className='card-content'>
-                                    <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
-                                        18 JULY
-                                    </Typography>
-                                    <Typography gutterBottom variant="h5" component="div" className='card-text'>
-                                        Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary" className='card-text-info'>    
-                                        Πλατεια Νερου, Φαληρο
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                    <Card className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
-                            <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                height="160"
-                                image={sliderarctic}
-                                alt="green iguana"
-                                />
-                                <CardContent className='card-content'>
-                                    <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
-                                        18 JULY
-                                    </Typography>
-                                    <Typography gutterBottom variant="h5" component="div" className='card-text'>
-                                        Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary" className='card-text-info'>    
-                                        Πλατεια Νερου, Φαληρο
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Card className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
-                            <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                height="160"
-                                image={sliderarctic}
-                                alt="green iguana"
-                                />
-                                <CardContent className='card-content'>
-                                    <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
-                                        18 JULY
-                                    </Typography>
-                                    <Typography gutterBottom variant="h5" component="div" className='card-text'>
-                                        Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary" className='card-text-info'>    
-                                        Πλατεια Νερου, Φαληρο
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Card className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
-                            <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                height="160"
-                                image={sliderarctic}
-                                alt="green iguana"
-                                />
-                                <CardContent className='card-content'>
-                                    <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
-                                        18 JULY
-                                    </Typography>
-                                    <Typography gutterBottom variant="h5" component="div" className='card-text'>
-                                        Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary" className='card-text-info'>    
-                                        Πλατεια Νερου, Φαληρο
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Card className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
-                            <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                height="160"
-                                image={sliderarctic}
-                                alt="green iguana"
-                                />
-                                <CardContent className='card-content'>
-                                    <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
-                                        18 JULY
-                                    </Typography>
-                                    <Typography gutterBottom variant="h5" component="div" className='card-text'>
-                                        Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary" className='card-text-info'>    
-                                        Πλατεια Νερου, Φαληρο
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </SwiperSlide>
-                </Swiper>
+                <div className='popular-slider-container'>
+
+                    <Swiper
+                        spaceBetween={20}
+                        slidesPerView={4}
+                        onSlideChange={() => console.log('slide change')}
+                        onSwiper={(swiper) => console.log(swiper)}
+                        className='popular-slider'
+                        // breakpoints={{
+                        //     // when window width is >= 640px
+                        //     380: {
+                        //         // width: 640,
+                        //         slidesPerView: 1,
+                        //         spaceBetween: 7,
+                        //     },
+                        //     600: {
+                        //         // width: 640,
+                        //         slidesPerView: 2,
+                        //         spaceBetween: 7,
+                        //     },
+                        //     994: {
+                        //     // width: 640,
+                        //     slidesPerView: 3,
+                        //     spaceBetween: 7,
+                        //     },
+                        //     // when window width is >= 768px
+                        //     1360: {
+                        //     // width: 1160,
+                        //     slidesPerView: 4,
+                            
+                        //     },
+                        // }}
+                        >
+                        <SwiperSlide className='categ-slider'>
+                            <Card className='popular-card' sx={{ width: '290px', minWidth: '200px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    height="160"
+                                    image={sliderarctic}
+                                    alt="green iguana"
+                                    />
+                                    <CardContent className='card-content'>
+                                        <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
+                                            18 JULY
+                                        </Typography>
+                                        <Typography gutterBottom variant="h5" component="div" className='card-text'>
+                                            Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" className='card-text-info'>    
+                                            Πλατεια Νερου, Φαληρο
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide className='categ-slider'>
+                        <Card className='popular-card' sx={{ width: '290px', minWidth: '200px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    height="160"
+                                    image={sliderarctic}
+                                    alt="green iguana"
+                                    />
+                                    <CardContent className='card-content'>
+                                        <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
+                                            18 JULY
+                                        </Typography>
+                                        <Typography gutterBottom variant="h5" component="div" className='card-text'>
+                                            Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" className='card-text-info'>    
+                                            Πλατεια Νερου, Φαληρο
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide className='categ-slider'>
+                        <Card className='popular-card' sx={{ width: '290px', minWidth: '200px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    height="160"
+                                    image={sliderarctic}
+                                    alt="green iguana"
+                                    />
+                                    <CardContent className='card-content'>
+                                        <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
+                                            18 JULY
+                                        </Typography>
+                                        <Typography gutterBottom variant="h5" component="div" className='card-text'>
+                                            Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" className='card-text-info'>    
+                                            Πλατεια Νερου, Φαληρο
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide className='categ-slider'>
+                            <Card className='popular-card' sx={{ width: '290px', minWidth: '200px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    height="160"
+                                    image={sliderarctic}
+                                    alt="green iguana"
+                                    />
+                                    <CardContent className='card-content'>
+                                        <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
+                                            18 JULY
+                                        </Typography>
+                                        <Typography gutterBottom variant="h5" component="div" className='card-text'>
+                                            Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" className='card-text-info'>    
+                                            Πλατεια Νερου, Φαληρο
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide className='categ-slider'>
+                            <Card className='popular-card' sx={{ width: '290px', minWidth: '200px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    height="160"
+                                    image={sliderarctic}
+                                    alt="green iguana"
+                                    />
+                                    <CardContent className='card-content'>
+                                        <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
+                                            18 JULY
+                                        </Typography>
+                                        <Typography gutterBottom variant="h5" component="div" className='card-text'>
+                                            Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" className='card-text-info'>    
+                                            Πλατεια Νερου, Φαληρο
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide className='categ-slider'>
+                            <Card className='popular-card' sx={{ width: '290px', minWidth: '200px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    height="160"
+                                    image={sliderarctic}
+                                    alt="green iguana"
+                                    />
+                                    <CardContent className='card-content'>
+                                        <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
+                                            18 JULY
+                                        </Typography>
+                                        <Typography gutterBottom variant="h5" component="div" className='card-text'>
+                                            Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" className='card-text-info'>    
+                                            Πλατεια Νερου, Φαληρο
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </SwiperSlide>
+                    </Swiper>
+                </div>
             </div>
             <div className='homepage-container category-homepage-container'>
                 <h2 className='popular-title'>Categories</h2>
                 <p className='popular-description'>Whatever you prefer, we've got something for you</p>
 
                 <Swiper
-                    spaceBetween={8}
-                    slidesPerView={4}
+                    spaceBetween={20}
                     onSlideChange={() => console.log('slide change')}
                     onSwiper={(swiper) => console.log(swiper)}
                     className='popular-slider'
+                    breakpoints={{
+                        1330: {               
+                        slidesPerView: 4,
+                        },
+                    }}
+                    
                 >
-                    <SwiperSlide>
+                    <SwiperSlide className='categ-slider'>
                         <Cardjoy className='category-card' sx={{ width: '290px !important', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}}>
                             <CardCoverjoy>
                             <img
@@ -285,7 +317,7 @@ function Homepage() {
                         </Cardjoy>
                     </SwiperSlide>
 
-                    <SwiperSlide>
+                    <SwiperSlide className='categ-slider'>
                         <Cardjoy className='category-card' sx={{ width: '290px', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}} >
                             <CardCoverjoy>
                             <img
@@ -307,7 +339,7 @@ function Homepage() {
                         </Cardjoy>
                     </SwiperSlide>
 
-                    <SwiperSlide>
+                    <SwiperSlide className='categ-slider'>
                         <Cardjoy className='category-card' sx={{ width: '290px', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}}>
                             <CardCoverjoy>
                             <img
@@ -329,7 +361,7 @@ function Homepage() {
                         </Cardjoy>
                     </SwiperSlide>
 
-                    <SwiperSlide>
+                    <SwiperSlide className='categ-slider'>
                         <Cardjoy className='category-card' sx={{ width: '290px !important', minWidth: '258px !important', maxWidth: '258px !important', minHeight: '418px'}}>
                             <CardCoverjoy>
                             <img
