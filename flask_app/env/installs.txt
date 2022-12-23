@@ -1,0 +1,6 @@
+pip install -U flask-cors
+
+
+from flask_cors import CORS
+
+CORS(app)

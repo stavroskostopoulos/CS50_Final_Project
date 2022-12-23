@@ -198,17 +198,10 @@ html {
   margin-top: 40px;
 }
 
-.card-text {
-  color: #0d101a !important;
-  font-family: pf_highway_sans_pro_mediumRg, arial, sans-serif;
-  font-size: 16px !important;
-
-}
-
 .card-text-info {
 
   font-family: pf_highway_sans_pro_mediumRg, arial, sans-serif;
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 
 .categ-slider {
@@ -221,6 +214,16 @@ html {
 
 .popular-card{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+}
+
+.popular-card:hover{
+  -webkit-transition: background-color 500ms linear;
+  
+  background-color: #fdfdfd;  
+}
+
+.card-media-img{
+  height: 164px !important;
 }
 
 .image-card-text {
@@ -237,6 +240,31 @@ html {
 .category-card:hover {
   cursor: pointer !important;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px !important;
+}
+
+.popular-card-title-container{
+  /* background-color: red; */
+  height: 72px;
+  overflow-wrap: normal !important;
+  overflow: hidden;
+}
+
+.card-text {
+  color: #0d101a !important;
+  font-family: pf_highway_sans_pro_mediumRg, arial, sans-serif;
+  font-size: 17px !important;
+  font-weight: 580 !important;
+  /* overflow-wrap: normal; */
+
+}
+
+
+.popular-loading-container {
+  height: 130px !important;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .category-homepage-container{
