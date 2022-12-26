@@ -63,7 +63,7 @@ function Homepage() {
     const [popular, setPopular] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
 
-    React.useEffect(() =>{
+    React.useEffect(() => {
         fetchPopular();
     }, [])
 
@@ -190,107 +190,109 @@ function Homepage() {
             <div className='homepage-container category-homepage-container'>
                 <h2 className='popular-title'>Categories</h2>
                 <p className='popular-description'>Whatever you prefer, we've got something for you</p>
+                <div className='popular-slider-container'>
 
-                <Swiper
-                    spaceBetween={30}
-                    // slidesPerView={4}
-                    className='popular-slider'
-                    breakpoints={{
-                        1330: {               
-                        slidesPerView: 4,
-                        },
-                    }}
-                    
-                >
-                    <SwiperSlide className='categ-slider'>
-                        <Cardjoy className='category-card' sx={{ width: '290px !important', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}}>
-                            <CardCoverjoy>
-                            <img
-                                src={music}
-                                loading="lazy"
-                                alt=""
-                            />
-                            </CardCoverjoy>
-                            <CardContentjoy>
-                            <Typographyjoy
-                                level="h6"
-                                fontWeight="lg"
-                                textColor="#fff"
-                                className='image-card-text'
-                            >
-                                Music
-                            </Typographyjoy>
-                            </CardContentjoy>
-                        </Cardjoy>
-                    </SwiperSlide>
+                    <Swiper
+                        spaceBetween={30}
+                        // slidesPerView={4}
+                        className='popular-slider'
+                        breakpoints={{
+                            1330: {               
+                            slidesPerView: 4,
+                            },
+                        }}
+                        
+                    >
+                        <SwiperSlide className='categ-slider'>
+                            <Cardjoy className='category-card' sx={{ width: '290px !important', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}}>
+                                <CardCoverjoy>
+                                <img
+                                    src={music}
+                                    loading="lazy"
+                                    alt=""
+                                />
+                                </CardCoverjoy>
+                                <CardContentjoy>
+                                <Typographyjoy
+                                    level="h6"
+                                    fontWeight="lg"
+                                    textColor="#fff"
+                                    className='image-card-text'
+                                >
+                                    Music
+                                </Typographyjoy>
+                                </CardContentjoy>
+                            </Cardjoy>
+                        </SwiperSlide>
 
-                    <SwiperSlide className='categ-slider'>
-                        <Cardjoy className='category-card' sx={{ width: '290px', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}} >
-                            <CardCoverjoy>
-                            <img
-                                src={theater}
-                                loading="lazy"
-                                alt=""
-                            />
-                            </CardCoverjoy>
-                            <CardContentjoy>
-                            <Typographyjoy
-                                level="h6"
-                                fontWeight="lg"
-                                textColor="#fff"
-                                className='image-card-text'
-                            >
-                                Theater
-                            </Typographyjoy>
-                            </CardContentjoy>
-                        </Cardjoy>
-                    </SwiperSlide>
+                        <SwiperSlide className='categ-slider'>
+                            <Cardjoy className='category-card' sx={{ width: '290px', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}} >
+                                <CardCoverjoy>
+                                <img
+                                    src={theater}
+                                    loading="lazy"
+                                    alt=""
+                                />
+                                </CardCoverjoy>
+                                <CardContentjoy>
+                                <Typographyjoy
+                                    level="h6"
+                                    fontWeight="lg"
+                                    textColor="#fff"
+                                    className='image-card-text'
+                                >
+                                    Theater
+                                </Typographyjoy>
+                                </CardContentjoy>
+                            </Cardjoy>
+                        </SwiperSlide>
 
-                    <SwiperSlide className='categ-slider'>
-                        <Cardjoy className='category-card' sx={{ width: '290px', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}}>
-                            <CardCoverjoy>
-                            <img
-                                src={cinema}
-                                loading="lazy"
-                                alt=""
-                            />
-                            </CardCoverjoy>
-                            <CardContentjoy>
-                            <Typographyjoy
-                                level="h6"
-                                fontWeight="lg"
-                                textColor="#fff"
-                                className='image-card-text'
-                            >
-                                Cinema
-                            </Typographyjoy>
-                            </CardContentjoy>
-                        </Cardjoy>
-                    </SwiperSlide>
+                        <SwiperSlide className='categ-slider'>
+                            <Cardjoy className='category-card' sx={{ width: '290px', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}}>
+                                <CardCoverjoy>
+                                <img
+                                    src={cinema}
+                                    loading="lazy"
+                                    alt=""
+                                />
+                                </CardCoverjoy>
+                                <CardContentjoy>
+                                <Typographyjoy
+                                    level="h6"
+                                    fontWeight="lg"
+                                    textColor="#fff"
+                                    className='image-card-text'
+                                >
+                                    Cinema
+                                </Typographyjoy>
+                                </CardContentjoy>
+                            </Cardjoy>
+                        </SwiperSlide>
 
-                    <SwiperSlide className='categ-slider'>
-                        <Cardjoy className='category-card' sx={{ width: '290px !important', minWidth: '258px !important', maxWidth: '258px !important', minHeight: '418px'}}>
-                            <CardCoverjoy>
-                            <img
-                                src={sports}
-                                loading="lazy"
-                                alt=""
-                            />
-                            </CardCoverjoy>
-                            <CardContentjoy>
-                            <Typographyjoy
-                                level="h6"
-                                fontWeight="lg"
-                                textColor="#fff"
-                                className='image-card-text'
-                            >
-                                Sports
-                            </Typographyjoy>
-                            </CardContentjoy>
-                        </Cardjoy>
-                    </SwiperSlide>
+                        <SwiperSlide className='categ-slider'>
+                            <Cardjoy className='category-card' sx={{ width: '290px !important', minWidth: '258px !important', maxWidth: '258px !important', minHeight: '418px'}}>
+                                <CardCoverjoy>
+                                <img
+                                    src={sports}
+                                    loading="lazy"
+                                    alt=""
+                                />
+                                </CardCoverjoy>
+                                <CardContentjoy>
+                                <Typographyjoy
+                                    level="h6"
+                                    fontWeight="lg"
+                                    textColor="#fff"
+                                    className='image-card-text'
+                                >
+                                    Sports
+                                </Typographyjoy>
+                                </CardContentjoy>
+                            </Cardjoy>
+                        </SwiperSlide>
 
-                </Swiper>
+                    </Swiper>
+                </div>
             </div>
             <div className='blank'></div>
         </div>

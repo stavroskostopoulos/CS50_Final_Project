@@ -44,6 +44,26 @@ import years from "../variables/Years";
 
 function Theater() {
 
+    const [filterData, setFilterData] = React.useState();
+
+    React.useEffect(() => {
+
+        getFilters()
+
+    }, [])
+
+    const getFilters = async () => {
+        try{
+            const response = await axios.get("http://127.0.0.1:5000/");
+            console.log(response.data)
+            setFilterData(response.data)
+            // setLoading(false)
+        }catch(err){
+            // setLoading(true)
+            console.log("Filter data fetch error!")
+        }
+    }
+
     let arr = [1, 2, 4, 5, 6 ,7 ,8, 1, 2, 4, 5, 6, 4, 4, 3, 1];
     return (
         <div>
