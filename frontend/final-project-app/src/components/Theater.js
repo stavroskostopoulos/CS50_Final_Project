@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import axios from 'axios'
 
 //import MATERIAL UI
 import TextField from '@mui/material/TextField';
@@ -45,6 +46,13 @@ import years from "../variables/Years";
 function Theater() {
 
     const [filterData, setFilterData] = React.useState();
+    const [loading, setLoading] = React.useState(true);
+
+    // filters
+    const [month, setMonth] = React.useState('All');
+    const [year, setYear] = React.useState('All');
+    const [city, setCity] = React.useState('All');
+
 
     React.useEffect(() => {
 
@@ -52,19 +60,30 @@ function Theater() {
 
     }, [])
 
+    React.useEffect(() => {
+
+        console.log(month)
+        console.log(year)
+        console.log(city)
+
+
+    }, [month, year, city])
+
     const getFilters = async () => {
         try{
-            const response = await axios.get("http://127.0.0.1:5000/");
-            console.log(response.data)
+            const response = await axios.get("http://127.0.0.1:5000/data");
+            // console.log(response.data)
             setFilterData(response.data)
-            // setLoading(false)
+            // response.data.months.map((option) => console.log(option))
+            // console.log(response.data)
+            setLoading(false)
         }catch(err){
-            // setLoading(true)
+            setLoading(true)
             console.log("Filter data fetch error!")
         }
     }
 
-    let arr = [1, 2, 4, 5, 6 ,7 ,8, 1, 2, 4, 5, 6, 4, 4, 3, 1];
+    let arr = [1, 2, 4, 5, 6 ,7 ,8, 9, 3, 10, 11, 12, 13, 14, 15, 16];
     return (
         <div>
             <Swiper
@@ -82,13 +101,13 @@ function Theater() {
             initialSlide="2"
             className="mySwiper"
             >
-                <SwiperSlide className="myswiper-slide"><img src={image1}/></SwiperSlide>
-                <SwiperSlide className="myswiper-slide"><img src={image2}/></SwiperSlide>
-                <SwiperSlide className="myswiper-slide"><img src={image3}/></SwiperSlide>
-                <SwiperSlide className="myswiper-slide"><img src={image4}/></SwiperSlide>
-                <SwiperSlide className="myswiper-slide"><img src={image5}/></SwiperSlide>
-                <SwiperSlide className="myswiper-slide"><img src={image6}/></SwiperSlide>
-                <SwiperSlide className="myswiper-slide"><img src={image7}/></SwiperSlide>
+                <SwiperSlide className="myswiper-slide"><img key="image1" src={image1}/></SwiperSlide>
+                <SwiperSlide className="myswiper-slide"><img key="image2" src={image2}/></SwiperSlide>
+                <SwiperSlide className="myswiper-slide"><img key="image3" src={image3}/></SwiperSlide>
+                <SwiperSlide className="myswiper-slide"><img key="image4" src={image4}/></SwiperSlide>
+                <SwiperSlide className="myswiper-slide"><img key="image5" src={image5}/></SwiperSlide>
+                <SwiperSlide className="myswiper-slide"><img key="image6" src={image6}/></SwiperSlide>
+                <SwiperSlide className="myswiper-slide"><img key="image7" src={image7}/></SwiperSlide>
 
             </Swiper>
             <div className="filters-box-container">
@@ -97,51 +116,61 @@ function Theater() {
                         <p className="filters-text">Events</p>
                         <h3 className="filters-title">Theater</h3>
                         <div className="select-container">
-                            <TextField
-                                id="filled-select-currency"
-                                select
-                                label="Month"
-                                defaultValue="0"
-                                helperText={false}
-                                variant="filled"
-                                className="select-filters-tf"
-                            >
-                                {months.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                            <TextField
-                                id="filled-select-currency"
-                                select
-                                label="City"
-                                defaultValue="0"
-                                helperText={false}
-                                variant="filled"
-                                className="select-filters-tf"
-                            >
-                                {cities.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                            <TextField
-                                id="filled-select-currency"
-                                select
-                                label="Year"
-                                defaultValue="0"
-                                helperText={false}
-                                variant="filled"
-                                className="select-filters-tf"
-                            >
-                                {years.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
+                            {!loading &&
+                            
+                                <TextField
+                                    id="filled-select-currency"
+                                    select
+                                    label="Month"
+                                    defaultValue="All"
+                                    helperText={false}
+                                    variant="filled"
+                                    className="select-filters-tf"
+                                    onChange={(e) => setMonth(e.target.value)}
+                                >
+                                    {filterData.months.map((option) => (
+                                        <MenuItem key={option} value={option}>
+                                        {option}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+                            }
+                            {!loading &&  
+                                <TextField
+                                    id="filled-select-currency"
+                                    select
+                                    label="City"
+                                    defaultValue="All"
+                                    helperText={false}
+                                    variant="filled"
+                                    className="select-filters-tf"
+                                    onChange={(e) => setCity(e.target.value)}
+                                >
+                                    {filterData.cities.map((option) => (
+                                        <MenuItem key={option} value={option}>
+                                        {option}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+                            }
+                            {!loading &&     
+                                <TextField
+                                    id="filled-select-currency"
+                                    select
+                                    label="Year"
+                                    defaultValue="All"
+                                    helperText={false}
+                                    variant="filled"
+                                    className="select-filters-tf"
+                                    onChange={(e) => setYear(e.target.value)}
+                                >
+                                    {filterData.years.map((option) => (
+                                        <MenuItem key={option} value={option}>
+                                        {option}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+                            }
                         </div>
                     </div>
                 </div>
@@ -150,7 +179,7 @@ function Theater() {
             <div className="events-grid-container">
                 <div className="events-grid">
                         {arr.map((element) => (
-                            <Card className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
+                            <Card key={element} className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
                                 <CardActionArea>
                                     <CardMedia
                                     component="img"

@@ -23,7 +23,8 @@
     margin-top: 14px;
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    /* gap: 20px; */
+    justify-content: space-between;
 }
 
 .select-filters-tf {
