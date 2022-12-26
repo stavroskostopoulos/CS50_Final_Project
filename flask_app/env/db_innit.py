@@ -75,7 +75,7 @@ months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 years = ['2023', '2024', '2025']
 prices = [5.0, 10.0, 15.0, 20.0]
 cities = ['Litochoro', 'Athens', 'Thessaloniki', 'Spiti Koumpi', 'Sotiros', 'Katerini', 'Synora', 'Kalamata']
-days = list(range(32))
+days = list(range(1, 31))
 
 # For each city create all the events on random dates and prices
 for city in cities:

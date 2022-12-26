@@ -3,9 +3,9 @@ import json
 from flask import Flask,jsonify,request
 from flask_cors import CORS
 
-CITIES = ['Litochoro', 'Athens', 'Thessaloniki', 'Spiti Koumpi', 'Sotiros', 'Katerini', 'Synora', 'Kalamata']
-MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September','Octomber', 'November', 'December']
-YEARS = ['2023', '2024', '2025']
+CITIES = ['All', 'Litochoro', 'Athens', 'Thessaloniki', 'Spiti Koumpi', 'Sotiros', 'Katerini', 'Synora', 'Kalamata']
+MONTHS = ['All', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September','Octomber', 'November', 'December']
+YEARS = ['All', '2023', '2024', '2025']
 
 app = Flask(__name__)
 
@@ -29,7 +29,7 @@ def index():
 @app.route('/data')
 def data():
     prices = [5.0, 10.0, 15.0, 20.0]
-    days = list(range(32))
+    days = list(range(1, 31))
     dic = {"months": MONTHS, "cities": CITIES, "years": YEARS, "prices": prices, "days": days}
 
     return jsonify(dic)
@@ -51,10 +51,10 @@ def theater():
     #     # Error city
 
     conn = get_db_connection()
-    search_results = conn.execute('SELECT * FROM events WHERE category = Theater AND month LIKE month AND year LIKE year, city LIKE city').fetchall()
+    search_results = conn.execute("SELECT * FROM events WHERE category = 'Theater' AND month LIKE :month AND year LIKE :year AND city LIKE :city", {"month": month, "year": year, "city": city}).fetchall()
     conn.close()
     
-    return search_results
+    return jsonify([dict(ix) for ix in search_results])
 
 
 @app.route('/sport')
@@ -73,10 +73,10 @@ def sport():
     #     # Error city
 
     conn = get_db_connection()
-    search_results = conn.execute('SELECT * FROM events WHERE category = Sport AND month LIKE month AND year LIKE year, city LIKE city').fetchall()
+    search_results = conn.execute("SELECT * FROM events WHERE category = 'Sport' AND month LIKE :month AND year LIKE :year AND city LIKE :city", {"month": month, "year": year, "city": city}).fetchall()
     conn.close()
     
-    return search_results
+    return jsonify([dict(ix) for ix in search_results])
 
 
 
@@ -96,10 +96,10 @@ def music():
     #     # Error city
 
     conn = get_db_connection()
-    search_results = conn.execute('SELECT * FROM events WHERE category = Music AND month LIKE month AND year LIKE year, city LIKE city').fetchall()
+    search_results = conn.execute("SELECT * FROM events WHERE category = 'Music' AND month LIKE :month AND year LIKE :year AND city LIKE :city", {"month": month, "year": year, "city": city}).fetchall()
     conn.close()
     
-    return search_results
+    return jsonify([dict(ix) for ix in search_results])
 
 
 
@@ -119,7 +119,7 @@ def cinema():
     #     # Error city
 
     conn = get_db_connection()
-    search_results = conn.execute('SELECT * FROM events WHERE category = Cinema AND month LIKE month AND year LIKE year, city LIKE city').fetchall()
+    search_results = conn.execute("SELECT * FROM events WHERE category = 'Cinema' AND month LIKE :month AND year LIKE :year AND city LIKE :city", {"month": month, "year": year, "city": city}).fetchall()
     conn.close()
     
-    return search_results
+    return jsonify([dict(ix) for ix in search_results])
