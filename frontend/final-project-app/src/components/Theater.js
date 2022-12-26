@@ -48,10 +48,15 @@ function Theater() {
     const [filterData, setFilterData] = React.useState();
     const [loading, setLoading] = React.useState(true);
 
+    const [events, setEvents] = React.useState();
+    const [loadingEvents, setLoadingEvents] = React.useState(true);
+
     // filters
     const [month, setMonth] = React.useState('All');
     const [year, setYear] = React.useState('All');
     const [city, setCity] = React.useState('All');
+
+
 
 
     React.useEffect(() => {
@@ -62,12 +67,61 @@ function Theater() {
 
     React.useEffect(() => {
 
-        console.log(month)
-        console.log(year)
-        console.log(city)
-
+        fetchProducts()
 
     }, [month, year, city])
+
+    const fetchProducts = async () => {
+        try{
+
+            let url_param_count = 0;
+
+            let url_str = "http://127.0.0.1:5000/theater";
+
+            // construct url
+            if(month!=="All"){
+                url_param_count += 1;
+                url_str += `?month=${month}`;
+            }
+            
+            if(city!=="All"){
+                
+                if(url_param_count==0){
+                    url_str += `?city=${city}`;   
+                }else{
+                    url_str += `&city=${city}`;
+                }
+
+                url_param_count += 1;
+            }
+            
+            if(year!=="All"){
+                
+                if(url_param_count==0){
+                    url_str += `?year=${year}`;   
+                }else{
+                    url_str += `&year=${year}`;
+                }
+
+                url_param_count += 1;
+            }
+
+            console.log(url_str)
+
+
+            //now lets fetch the data
+            const response = await axios.get(url_str);
+
+            setEvents(response.data)
+            setLoadingEvents(false)
+            console.log(response.data)
+
+            
+        }catch(err){
+            setLoadingEvents(true)
+            console.log("Fetch events data fetch error!")
+        }
+    }
 
     const getFilters = async () => {
         try{
@@ -178,8 +232,10 @@ function Theater() {
             </div>
             <div className="events-grid-container">
                 <div className="events-grid">
-                        {arr.map((element) => (
-                            <Card key={element} className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
+                    { !loadingEvents &&
+
+                        events.map((element) => (
+                            <Card key={element.id} className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
                                 <CardActionArea>
                                     <CardMedia
                                     component="img"
@@ -189,18 +245,23 @@ function Theater() {
                                     />
                                 <CardContent className='card-content'>
                                     <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
-                                        18 JULY
+                                        {element.day} {element.month}
                                     </Typography>
-                                    <Typography gutterBottom variant="h5" component="div" className='card-text'>
-                                        Release Athens 2023/ ARCTIC MONKEYS + THE HIVES + WILLIE J HEALEY
-                                    </Typography>
+                                    <div className='popular-card-title-container'>    
+                                        <Typography gutterBottom variant="h5" component="div" className='card-text'>
+                                            {element.title}
+                                        </Typography>
+                                    </div>
+                                    
                                     <Typography variant="body2" color="text.secondary" className='card-text-info'>    
-                                        Πλατεια Νερου, Φαληρο
+                                        {element.city}
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
                         </Card>
-                        ))}
+                        ))
+                    }
+
                 </div>
                 
             </div>
