@@ -1,7 +1,6 @@
 import React from 'react'
-import axios from 'axios'
-
-//improt css
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 //import images
 import arctic from '../images/arctic.jpg';
@@ -14,30 +13,27 @@ import sports from '../images/sports.jpg'
 
 //import MaterialUI
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import CardCover from '@mui/joy/CardCover';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import { withStyles } from "@material-ui/core/styles";
 import CircularProgress from '@mui/material/CircularProgress';
+import Cardjoy from '@mui/joy/Card';
+import CardCoverjoy from '@mui/joy/CardCover';
+import CardContentjoy from '@mui/joy/CardContent';
+import Typographyjoy from '@mui/joy/Typography';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-
-
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
+// Import Swiper styles
+import 'swiper/css';
 
-import Cardjoy from '@mui/joy/Card';
-import CardCoverjoy from '@mui/joy/CardCover';
-import CardContentjoy from '@mui/joy/CardContent';
-import Typographyjoy from '@mui/joy/Typography';
+
 
 const SearchTextField = withStyles({
     root: {
@@ -148,37 +144,43 @@ function Homepage() {
                                 spaceBetween={30}
                                 slidesPerView="auto"
                                 className='popular-slider'
+                                // slideClass= {'custom_myslider__slide'}
+                                // slideVisibleClass= {'csutom_myslider__slide--visible'}
                             >
 
                                 {popular.map((popular_item) => (
+                                    
                                     <SwiperSlide key={popular_item.id} className='categ-slider'>
-                                        <Card className='popular-card' sx={{ width: '290px', minWidth: '200px', maxWidth: '290px', maxHeight: '310px', minHeight: '310px'}}>
-                                            <CardActionArea>
-                                                <CardMedia
-                                                    component="img"
-                                                    height="160"
-                                                    image={`/thumbnail/${popular_item.photo_id}.jpg`}
-                                                    alt="green iguana"
-                                                    className='card-media-img'
-                                                />
-                                                <CardContent className='card-content'>
-                                                    <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
-                                                        {popular_item.day} {popular_item.month.toUpperCase()}
-                                                    </Typography>
-                                                    <div className='popular-card-title-container'>
-                                                        <Typography gutterBottom variant="h5" component="div" className='card-text'>
-                                                            {popular_item.title}
-                                                            
-                                                        </Typography>
+                                            <Link to={ `/event/${popular_item.id}`} state={{id: popular_item.id }} style={{ textDecoration: 'none' }}>
+                                                <Card className='popular-card' sx={{ width: '290px', minWidth: '200px', maxWidth: '290px', maxHeight: '310px', minHeight: '310px'}}>
+                                                    <CardActionArea>
+                                                        <CardMedia
+                                                            component="img"
+                                                            height="160"
+                                                            image={`/thumbnail/${popular_item.photo_id}.jpg`}
+                                                            alt="green iguana"
+                                                            className='card-media-img'
+                                                        />
+                                                        <CardContent className='card-content'>
+                                                            <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
+                                                                {popular_item.day} {popular_item.month.toUpperCase()}
+                                                            </Typography>
+                                                            <div className='popular-card-title-container'>
+                                                                <Typography gutterBottom variant="h5" component="div" className='card-text'>
+                                                                    {popular_item.title}
+                                                                    
+                                                                </Typography>
 
-                                                    </div>
-                                                    <Typography variant="body2" color="text.secondary" className='card-text-info'>    
-                                                        {popular_item.city}
-                                                    </Typography>
-                                                </CardContent>
-                                            </CardActionArea>
-                                        </Card>
-                                    </SwiperSlide>
+                                                            </div>
+                                                            <Typography variant="body2" color="text.secondary" className='card-text-info'>    
+                                                                {popular_item.city}
+                                                            </Typography>
+                                                        </CardContent>
+                                                    </CardActionArea>
+                                                </Card>
+                                            </Link>
+                                        </SwiperSlide>
+
                                 ))}
                                         
                                 
@@ -194,6 +196,8 @@ function Homepage() {
 
                     <Swiper
                         spaceBetween={30}
+                        slidesPerView="auto"
+
                         // slidesPerView={4}
                         className='popular-slider'
                         breakpoints={{
@@ -204,7 +208,7 @@ function Homepage() {
                         
                     >
                         <SwiperSlide className='categ-slider'>
-                            <Cardjoy className='category-card' sx={{ width: '290px !important', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}}>
+                            <Cardjoy className='category-card' sx={{ width: '290px !important', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}} component={Link} to={'/music'}>
                                 <CardCoverjoy>
                                 <img
                                     src={music}
@@ -226,7 +230,7 @@ function Homepage() {
                         </SwiperSlide>
 
                         <SwiperSlide className='categ-slider'>
-                            <Cardjoy className='category-card' sx={{ width: '290px', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}} >
+                            <Cardjoy className='category-card' sx={{ width: '290px', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}} component={Link} to={'/theater'}>
                                 <CardCoverjoy>
                                 <img
                                     src={theater}
@@ -248,7 +252,7 @@ function Homepage() {
                         </SwiperSlide>
 
                         <SwiperSlide className='categ-slider'>
-                            <Cardjoy className='category-card' sx={{ width: '290px', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}}>
+                            <Cardjoy className='category-card' sx={{ width: '290px', minWidth: '258px', maxWidth: '258px', minHeight: '418px'}} component={Link} to={'/cinema'}>
                                 <CardCoverjoy>
                                 <img
                                     src={cinema}
@@ -270,7 +274,7 @@ function Homepage() {
                         </SwiperSlide>
 
                         <SwiperSlide className='categ-slider'>
-                            <Cardjoy className='category-card' sx={{ width: '290px !important', minWidth: '258px !important', maxWidth: '258px !important', minHeight: '418px'}}>
+                            <Cardjoy className='category-card' sx={{ width: '290px !important', minWidth: '258px !important', maxWidth: '258px !important', minHeight: '418px'}} component={Link} to={'/sports'}>
                                 <CardCoverjoy>
                                 <img
                                     src={sports}

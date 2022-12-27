@@ -73,7 +73,7 @@ def sport():
     #     # Error city
 
     conn = get_db_connection()
-    search_results = conn.execute("SELECT * FROM events WHERE category = 'Sport' AND month LIKE :month AND year LIKE :year AND city LIKE :city", {"month": month, "year": year, "city": city}).fetchall()
+    search_results = conn.execute("SELECT * FROM events WHERE category = 'Sports' AND month LIKE :month AND year LIKE :year AND city LIKE :city", {"month": month, "year": year, "city": city}).fetchall()
     conn.close()
     
     return jsonify([dict(ix) for ix in search_results])
@@ -123,3 +123,14 @@ def cinema():
     conn.close()
     
     return jsonify([dict(ix) for ix in search_results])
+
+
+@app.route('/event')
+def event():
+
+    event_id = request.args.get("id", "1")
+
+    conn = get_db_connection()
+    event_result = conn.execute('SELECT * FROM events WHERE id = :event_id', {"event_id": event_id}).fetchall()
+    conn.close()
+    return jsonify([dict(ix) for ix in event_result])

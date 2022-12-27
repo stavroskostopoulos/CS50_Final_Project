@@ -103,7 +103,7 @@ function Eventpage(props) {
     };
 
     return (
-        <>
+        <div className='movie-background-container'>
             {loading && 
                 <div className='event-page-loading-container'>
                     <CircularProgress color="secondary" /> 
@@ -115,36 +115,52 @@ function Eventpage(props) {
 
                 <div className='event-page-container'>
                     <div className='event-container'>
-                        <img draggable={false} src={`/thumbnail/${eventData.photo_id}.jpg`} className="image-event"/>
-                        <div className='event-title'>
+                        <div className='movie-title-tickets'>
                             <h2>
                                 {eventData.title}
                             </h2>
-                            <Stack className="event-icon-info">
-                                <Stack direction="row" spacing={2}>
-                                    <EventIcon style={{ color: '#32c1d5' }}/>
-                                    <p>{eventData.day} {eventData.month} {eventData.year}</p>
-                                </Stack>
-                                <Stack direction="row" spacing={2}>
-                                    <MapIcon style={{ color: '#32c1d5' }}/>
-                                    <p>{eventData.city}</p>
-                                </Stack>
-                            </Stack>
-                            
-                            <div className='ticket-button-container'>
-                                <Button variant="contained" color="success" className='ticket-button' onClick={() => setOpen(true)}>
+                            <div className='movie-ticket-button-container'>
+                                <Button variant="contained" color="success" className='movie-ticket-button' onClick={() => setOpen(true)}>
                                     TICKETS
                                 </Button>
                             </div>
+                        </div>
 
+
+                        <Divider/>
+
+                        <div className='movie-container'>
+                            <img draggable={false} src={`/thumbnail/${eventData.photo_id}.jpg`} className="image-movie"/>
+                            <div className='movie-info-container'>
+                                {/* <Stack> */}
+                                <div>
+                                    <h2>
+                                        {eventData.title}
+                                    </h2>
+                                    <Stack className="movie-icon-info">
+                                        <Stack direction="row" spacing={2}>
+                                            <EventIcon style={{ color: '#32c1d5' }}/>
+                                            <p>{eventData.day} {eventData.month} {eventData.year}</p>
+                                        </Stack>
+                                        <Stack direction="row" spacing={2}>
+                                            <MapIcon style={{ color: '#32c1d5' }}/>
+                                            <p>{eventData.city}</p>
+                                        </Stack>
+                                    </Stack>
+                                </div>
+                                    <Stack className='storyline-container'>
+                                        <h4 className='storyline-title'>
+                                            Storyline
+                                        </h4>
+                                        <p className='storyline-content'>
+                                            {eventData.content.replaceAll("$","\n\n")}
+                                        </p>
+                                    </Stack>
+                                {/* </Stack> */}
+                            </div>
                         </div>
                         <Divider/>
-                        <div className='event-desc'>
-                            <p>
-                                {eventData.content.replaceAll("$","\n\n")}
-                            </p>
-                        </div>
-                        <div className='event-alert'>
+                        <div className='event-alert movie-alert'>
                             <Alert severity="warning">
                             <AlertTitle>Cancellation</AlertTitle>
                                 Please make sure you inform the organiser promptly in case you can't make it to the event. Your tickets may be handed to others interested and you could get a refund.
@@ -241,7 +257,7 @@ function Eventpage(props) {
             }
 
             
-        </>
+        </div>
     )
 }
 
