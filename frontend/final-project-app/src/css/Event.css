@@ -4,6 +4,13 @@
     padding: 100px 341px 40px;
     background-color: #ededf0;
     /* display: block; */
+    
+}
+
+.movie-background-container{
+    height: calc(100vh);
+    background-color: #ededf0;
+
 }
 
 .event-container {
@@ -15,9 +22,48 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.movie-container {
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    /* align-items: center; */
+    gap: 40px;
+}
+
+.movie-title-tickets {
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.movie-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-info-container h2 {
+    font-size: 30px;
+    margin: 0;
+    
+}
+
+.movie-alert {
+    margin-top: 20px;
+}
+
 .image-event {
     width: 100%;
     border-radius: 20px 20px 0px 0px;
+    
+}
+
+.image-movie {
+    width: 226px;
+    height: 100%;
+    border-radius: 10px;
     
 }
 
@@ -29,8 +75,33 @@
     /* gap: 20px; */
 }
 
+.event-page-loading-container{
+    height: 100vh;
+    background-color: #ededf0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.storyline-content{
+    margin-top: 20px;
+    /* max-height: 200px; */
+    /* overflow-wrap: normal !important;
+    overflow: hidden;   */
+}
+
 .event-title h2{
     color: #2a2a2a;
+}
+
+.storyline-title {
+    /* color: #2a2a2a; */
+    font-size: 22px;
+    margin: 0;
+}
+
+.storyline-container {
+    margin-top: 40px !important;
 }
 
 .event-icon-info{
@@ -39,7 +110,24 @@
     justify-content: center;
 }
 
+.movie-icon-info {
+    margin-top: 45px;
+}
+
+.movie-icon-info p{
+    color: #2a2a2a;
+}
+
+
+
 .ticket-button-container {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    padding-left: 40px;
+}
+
+.movie-ticket-button-container {
     display: flex;
     /* justify-content: center; */
     align-items: center;
@@ -59,7 +147,19 @@
     box-shadow: none !important;
 }
 
+.movie-ticket-button {
+    width: 197px;
+    height: 37px;
+    background-color: #00ab44 !important;
+    box-shadow: none !important;
+}
+
 .ticket-button:hover {
+    background-color: #008535 !important;
+
+}
+
+.movie-ticket-button:hover {
     background-color: #008535 !important;
 
 }
@@ -70,6 +170,7 @@
 
 .event-desc p {
     color: #2a2a2a;
+    white-space: pre-wrap;
 }
 
 .event-alert {
@@ -151,6 +252,15 @@
         padding: 100px 10px 40px;
         background-color: #ededf0;
         /* display: block; */
+    }
+
+    .movie-container {
+        padding: 20px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        /* align-items: center; */
+        gap: 40px;
     }
 
     .event-title {

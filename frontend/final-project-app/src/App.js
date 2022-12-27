@@ -10,6 +10,11 @@ import Appbar from './components/Appbar';
 import Homepage from './components/Homepage';
 import Theater from './components/Theater';
 import Eventpage from './components/Eventpage';
+import Music from './components/Music';
+import Cinema from './components/Cinema'
+import Moviepage from './components/Moviepage';
+import Sports from './components/Sports'
+
 import Test from './components/Test';
 
 function App() {
@@ -24,7 +29,11 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<Homepage/>}/>
 					<Route exact path="/theater" element={<Theater/>}/>
-					<Route exact path="/event" element={<Eventpage/>}/>
+					<Route exact path="/music" element={<Music/>}/>
+					<Route exact path="/cinema" element={<Cinema/>}/>
+					<Route exact path="/sports" element={<Sports/>}/>
+					<Route exact path="/event/:id" element={<Eventpage/>}/>
+					<Route exact path="/movie/:id" element={<Moviepage/>}/>
 					<Route exact path="/test" element={<Test/>}/>
 					
 				</Routes>

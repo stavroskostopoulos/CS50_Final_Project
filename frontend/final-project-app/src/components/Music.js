@@ -23,13 +23,11 @@ import "swiper/css/pagination";
 import '../css/Theater.css'
 
 // import images
-import image1 from '../images/theater/1.jpg';
-import image2 from '../images/theater/2.jpg';
-import image3 from '../images/theater/3.jpg';
-import image4 from '../images/theater/4.jpg';
-import image5 from '../images/theater/5.jpg';
-import image6 from '../images/theater/6.jpg';
-import image7 from '../images/theater/7.jpg';
+import image1 from '../images/music/1.jpg';
+import image2 from '../images/music/2.jpg';
+import image3 from '../images/music/3.jpg';
+import image4 from '../images/music/4.jpg';
+
 
 
 
@@ -66,7 +64,7 @@ function Theater() {
 
             let url_param_count = 0;
 
-            let url_str = "http://127.0.0.1:5000/theater";
+            let url_str = "http://127.0.0.1:5000/music";
 
             // construct url
             if(month!=="All"){
@@ -130,34 +128,33 @@ function Theater() {
     return (
         <div className="category-page-container">
             <Swiper
-            slidesPerView={"auto"}
+            slidesPerView="auto"
             centeredSlides={true}
             spaceBetween={30}
-            pagination={{
-            clickable: true,
-            }}
+            // pagination={{
+            //     clickable: true,
+            // }}
             autoplay={{
                 delay: 2500,
                 disableOnInteraction: false,
             }}
-            modules={[Pagination]}
+            // modules={[Pagination]}
             initialSlide="2"
             className="mySwiper"
+            loop={true}
+            loopedSlides="auto"
             >
                 <SwiperSlide className="myswiper-slide"><img key="image1" src={image1} alt="carousel_image1"/></SwiperSlide>
-                <SwiperSlide className="myswiper-slide"><img key="image2" src={image2} alt="carousel_image2"/></SwiperSlide>
                 <SwiperSlide className="myswiper-slide"><img key="image3" src={image3} alt="carousel_image3"/></SwiperSlide>
+                <SwiperSlide className="myswiper-slide"><img key="image2" src={image2} alt="carousel_image2"/></SwiperSlide>
                 <SwiperSlide className="myswiper-slide"><img key="image4" src={image4} alt="carousel_image4"/></SwiperSlide>
-                <SwiperSlide className="myswiper-slide"><img key="image5" src={image5} alt="carousel_image5"/></SwiperSlide>
-                <SwiperSlide className="myswiper-slide"><img key="image6" src={image6} alt="carousel_image6"/></SwiperSlide>
-                <SwiperSlide className="myswiper-slide"><img key="image7" src={image7} alt="carousel_image7"/></SwiperSlide>
 
             </Swiper>
             <div className="filters-box-container">
                 <div className="filters-box">
                     <div className="filters-box-contents">
                         <p className="filters-text">Events</p>
-                        <h3 className="filters-title">Theater</h3>
+                        <h3 className="filters-title">Music</h3>
                         <div className="select-container">
                             {!loading &&
                             
