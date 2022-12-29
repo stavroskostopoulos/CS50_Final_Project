@@ -134,3 +134,16 @@ def event():
     event_result = conn.execute('SELECT * FROM events WHERE id = :event_id', {"event_id": event_id}).fetchall()
     conn.close()
     return jsonify([dict(ix) for ix in event_result])
+
+
+@app.route('/search')
+def search():
+
+    search = str("%" + request.args.get("search", "%") + "%")
+
+    conn = get_db_connection()
+    search_result = conn.execute('SELECT * FROM events WHERE title LIKE :search AND city LIKE :search AND content LIKE :search', {"search": search}).fetchall()
+    conn.close()
+
+    return jsonify([dict(ix) for ix in search_result])
+    
