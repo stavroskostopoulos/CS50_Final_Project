@@ -16,13 +16,13 @@ YEARS = ['All', '2023', '2024', '2025']
 
 # Requires that "Less secure app access" be on
 # https://support.google.com/accounts/answer/6010255
-# app.config["MAIL_DEFAULT_SENDER"] = os.environ["MAIL_DEFAULT_SENDER"]
-# app.config["MAIL_PASSWORD"] = os.environ["MAIL_PASSWORD"]
-# app.config["MAIL_PORT"] = 587
-# app.config["MAIL_SERVER"] = "smtp.gmail.com"
-# app.config["MAIL_USE_TLS"] = True
-# app.config["MAIL_USERNAME"] = os.environ["MAIL_USERNAME"]
-# mail = Mail(app)
+app.config["MAIL_DEFAULT_SENDER"] = os.environ["MAIL_DEFAULT_SENDER"]
+app.config["MAIL_PASSWORD"] = os.environ["MAIL_PASSWORD"]
+app.config["MAIL_PORT"] = 587
+app.config["MAIL_SERVER"] = "smtp.gmail.com"
+app.config["MAIL_USE_TLS"] = True
+app.config["MAIL_USERNAME"] = os.environ["MAIL_USERNAME"]
+mail = Mail(app)
 
 
 CORS(app)
@@ -150,10 +150,12 @@ def event():
         email = request.form.get("email")
         zone = request.form.get("zone")
         times = request.form.get("times")
+
         if times == 1:
             times += " person"
         else:
             times += " people"
+
         event_id = request.form.get("event_id")
 
         conn = get_db_connection()
@@ -190,7 +192,9 @@ def event():
         Content = "You have made a reservation for " + times + " on the " + event['day'] + " of " 
         + event['month'] + event['year'] + " in " + event['city'] 
         + " for the " + event['category'] + ": " + event['title'] + ". Cost of reservation " + (zone * times) 
-        + ". \n \n \n About the event:\n " + event['content']
+        + "€. \n \n \n About the event:\n " + event['content']
+
+        print(Content)
 
         message = Message(Content, recipients=[email])
         mail.send(message)
