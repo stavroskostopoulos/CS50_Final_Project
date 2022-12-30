@@ -167,7 +167,7 @@ function Homepage() {
                                 {popular.map((popular_item) => (
                                     
                                     <SwiperSlide key={popular_item.id} className='categ-slider'>
-                                            <Link to={ `/event/${popular_item.id}`} state={{id: popular_item.id }} style={{ textDecoration: 'none' }}>
+                                            <Link to={(popular_item.category==="Cinema") ? `/movie/${popular_item.id}` : `/event/${popular_item.id}`} state={{id: popular_item.id }} style={{ textDecoration: 'none' }}>
                                                 <Card className='popular-card' sx={{ width: '290px', minWidth: '200px', maxWidth: '290px', maxHeight: '310px', minHeight: '310px'}}>
                                                     <CardActionArea>
                                                         <CardMedia

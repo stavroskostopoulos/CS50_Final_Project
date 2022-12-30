@@ -73,32 +73,23 @@ function Theater() {
 
 
     React.useEffect(() => {
-
+        console.log(searchValue)
         fetchProducts()
 
-    }, [])
+    }, [searchValue])
 
     
     const fetchProducts = async () => {
         try{
 
-            let url_param_count = 0;
-
-            let url_str = "http://127.0.0.1:5000/music";
-
-            // construct url
-
-            console.log(`http://127.0.0.1:5000/music`)
-
 
             //now lets fetch the data
-            const response = await axios.get(`http://127.0.0.1:5000/music`);
+            const response = await axios.get(`http://127.0.0.1:5000/search?search=${searchValue}`);
 
             setEvents(response.data)
             // setEvents([])
 
             setLoadingEvents(false)
-            console.log(response.data)
 
             
         }catch(err){
@@ -115,8 +106,7 @@ function Theater() {
                 return
             }
 
-            console.log(e.target.value)
-            
+            setSearchValue(e.target.value)
             navigate(`/search/${e.target.value}`)
 
         }
@@ -160,9 +150,9 @@ function Theater() {
                         <div className="events-grid">
 
                                 {events.map((element) => (
-                                    <Link to={ `/event/${element.id}`} state= {{id: element.id }} style={{ textDecoration: 'none' }}>
+                                    <Link key={element.id} to={(element.category==="Cinema") ? `/movie/${element.id}` : `/event/${element.id}`} state= {{id: element.id }} style={{ textDecoration: 'none' }}>
 
-                                        <Card key={element.id} className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
+                                        <Card  className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
                                             <CardActionArea>
                                                 <CardMedia
                                                 component="img"

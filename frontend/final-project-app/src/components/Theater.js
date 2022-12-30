@@ -103,6 +103,7 @@ function Theater() {
             const response = await axios.get(url_str);
 
             setEvents(response.data)
+
             setLoadingEvents(false)
             console.log(response.data)
 
@@ -219,44 +220,53 @@ function Theater() {
                 </div>
 
             </div>
-            <div className="events-grid-container">
-                <div className="events-grid">
-                    { !loadingEvents &&
+            { !loadingEvents && events.length &&
+                <div className="events-grid-container">
+                    <div className="events-grid">
 
-                        events.map((element) => (
-                            <Link to={ `/event/${element.id}`} state= {{id: element.id }} style={{ textDecoration: 'none' }}>
+                            {events.map((element) => (
+                                <Link to={ `/event/${element.id}`} state= {{id: element.id }} style={{ textDecoration: 'none' }}>
 
-                                <Card key={element.id} className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
-                                    <CardActionArea>
-                                        <CardMedia
-                                        component="img"
-                                        height="160"
-                                        image={`/thumbnail/${element.photo_id}.jpg`}
-                                        alt="green iguana"
-                                        />
-                                    <CardContent className='card-content'>
-                                        <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
-                                            {element.day} {element.month}
-                                        </Typography>
-                                        <div className='popular-card-title-container'>    
-                                            <Typography gutterBottom variant="h5" component="div" className='card-text'>
-                                                {element.title}
+                                    <Card key={element.id} className='popular-card' sx={{ width: '290px', minWidth: '290px', maxWidth: '290px', maxHeight: '310px', minHeight: '304px'}}>
+                                        <CardActionArea>
+                                            <CardMedia
+                                            component="img"
+                                            height="160"
+                                            image={`/thumbnail/${element.photo_id}.jpg`}
+                                            alt="green iguana"
+                                            />
+                                        <CardContent className='card-content'>
+                                            <Typography sx={{ fontSize: 14, color: '#32c1d5', fontWeight: '550' }} color="text.secondary" gutterBottom>
+                                                {element.day} {element.month}
                                             </Typography>
-                                        </div>
-                                        
-                                        <Typography variant="body2" color="text.secondary" className='card-text-info'>    
-                                            {element.city}
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                            </Link>
-                        ))
-                    }
+                                            <div className='popular-card-title-container'>    
+                                                <Typography gutterBottom variant="h5" component="div" className='card-text'>
+                                                    {element.title}
+                                                </Typography>
+                                            </div>
+                                            
+                                            <Typography variant="body2" color="text.secondary" className='card-text-info'>    
+                                                {element.city}
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                                </Link>
+                            ))}
 
+                    </div>
+                    
+
+                    
                 </div>
-                
-            </div>
+            }
+            { !loadingEvents && !events.length &&
+
+                <div className="search-empty-results-container">
+                    <p className="no-results-message">No such events were found!</p>
+                </div>
+
+            }
             <div className="blank-fragment"></div>
         </div>
   )
