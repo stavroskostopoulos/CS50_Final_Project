@@ -13,7 +13,6 @@ import { CardActionArea } from '@mui/material';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";

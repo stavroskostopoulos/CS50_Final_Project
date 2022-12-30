@@ -4,7 +4,6 @@ import axios from 'axios';
 
 //import images
 import arctic from '../images/arctic.jpg';
-import sliderarctic from '../images/sliderarctic.jpg'
 import music from '../images/music.jpg'
 import theater from '../images/theater.jpg'
 import cinema from '../images/cinema.jpg'

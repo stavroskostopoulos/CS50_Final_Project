@@ -187,9 +187,22 @@
     background-color: #008535 !important;
 }
 
+.book-ticket-button-error:hover{
+    background-color: #aa1919 !important;
+}
+
 .book-ticket-button {
     /* margin-top: 30px !important; */
     background-color: #00ab44 !important;
+    box-shadow: none !important;
+    color: white !important;
+    width: 100%;
+    border-radius: 20px !important;
+}
+
+.book-ticket-button-error {
+    /* margin-top: 30px !important; */
+    background-color: #d62323 !important;
     box-shadow: none !important;
     color: white !important;
     width: 100%;

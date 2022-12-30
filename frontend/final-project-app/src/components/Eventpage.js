@@ -77,9 +77,58 @@ function Eventpage(props) {
     const [eventData, setEventData] = React.useState();
     const [loading, setLoading] = React.useState(true);
 
+    const [email, setEmail] = React.useState("");
+    const [zone, setZone] = React.useState("1");
+    
+    const [buttonError, setButtonError] = React.useState(false);
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const validateEmail = (email) => {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+    const handleEmail = () => {
+        try{
+            
+            if(!validateEmail(email)) {
+                console.log("1")
+                setButtonError(true)
+                return
+            }
+            
+            if(!Number.isInteger(ticketNumber)){
+                console.log("2")
+
+                setButtonError(true)
+                return
+            }
+
+            if(parseInt(ticketNumber) < 1){
+                console.log("3")
+
+                setButtonError(true)
+                return
+            }
+
+
+            // setButtonError(false)
+            setOpen(false)
+            const zoneNumber = parseInt(zone)
+
+            // console.log(tickets[zoneNumber-1].label)
+            // await axios.post(`http://127.0.0.1:5000/email`,
+            //                 {
+                                
+            //                 }
+            // )
+
+        }catch(err){
+            console.log(err)
+        }
+    }
 
     const UpdateTicketNumber = (number) => {
         (number<1) ? setTicketNumber(1) : setTicketNumber(number)        
@@ -191,6 +240,8 @@ function Eventpage(props) {
                                         </InputAdornment>
                                         )
                                     }}
+                                    onChange={(e) => {setEmail(e.target.value); setButtonError(false);}}
+
                                     
                                 />
                                 <CustomTextField
@@ -209,6 +260,8 @@ function Eventpage(props) {
                                         )
                                     }}
                                     defaultValue="1"
+                                    onChange={(e) => {setZone(e.target.value); setButtonError(false);}}    
+
                                     
                                 >
                                         {tickets.map((option) => (
@@ -237,11 +290,12 @@ function Eventpage(props) {
                                             }}
                                             type="number"
                                             // value={ticketNumber}
-                                            onChange={(e) => UpdateTicketNumber(e.target.value)}
+                                            onChange={(e) => {UpdateTicketNumber(e.target.value); setButtonError(false); }}
                                         />
                                     </div>
+                                    
+                                    <Button className={(buttonError) ? "book-ticket-button-error" : "book-ticket-button"} disabled={buttonError} onClick={() => {handleEmail()}}>Book my tickets</Button>
 
-                                    <Button className="book-ticket-button" onClick={() => setOpen(false)}>Book my tickets</Button>
                                 </div>
                             </Stack>
                         </Box>

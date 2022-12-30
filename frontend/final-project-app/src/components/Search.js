@@ -1,12 +1,11 @@
 import React from "react";
 import axios from 'axios';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 
 //import MATERIAL UI
 import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -17,19 +16,10 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import InputAdornment from '@mui/material/InputAdornment';
 import { withStyles } from "@material-ui/core/styles";
 import CircularProgress from '@mui/material/CircularProgress';
-import Cardjoy from '@mui/joy/Card';
-import CardCoverjoy from '@mui/joy/CardCover';
-import CardContentjoy from '@mui/joy/CardContent';
-import Typographyjoy from '@mui/joy/Typography';
 
 // import css
 import '../css/Search.css'
 
-// import images
-import image1 from '../images/music/1.jpg';
-import image2 from '../images/music/2.jpg';
-import image3 from '../images/music/3.jpg';
-import image4 from '../images/music/4.jpg';
 
 
 const SearchTextField = withStyles({
@@ -59,18 +49,10 @@ function Theater() {
     const [searchValue, setSearchValue] = React.useState(params.searchvalue);
 
 
-    const [loading, setLoading] = React.useState(true);
-
     const [events, setEvents] = React.useState();
     const [loadingEvents, setLoadingEvents] = React.useState(true);
 
-    // filters
-    const [month, setMonth] = React.useState('All');
-    const [year, setYear] = React.useState('All');
-    const [city, setCity] = React.useState('All');
-
-
-
+    
 
     React.useEffect(() => {
         console.log(searchValue)

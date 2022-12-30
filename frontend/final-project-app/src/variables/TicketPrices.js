@@ -1,7 +1,7 @@
 const tickets = [
     {
         value: "1",
-        label: "Zone A | 25 €"
+        label: "Zone C | 15 €"
     },
     {
         value: "2",
@@ -9,7 +9,7 @@ const tickets = [
     },
     {
         value: "3",
-        label: "Zone C | 15 €"
+        label: "Zone A | 25 €"
     },
 ];
 
