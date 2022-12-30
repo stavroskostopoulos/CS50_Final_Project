@@ -14,6 +14,7 @@ import Music from './components/Music';
 import Cinema from './components/Cinema'
 import Moviepage from './components/Moviepage';
 import Sports from './components/Sports'
+import Search from './components/Search'
 
 import Test from './components/Test';
 
@@ -28,6 +29,7 @@ function App() {
 
 				<Routes>
 					<Route exact path="/" element={<Homepage/>}/>
+					<Route exact path="/search/:searchvalue" element={<Search/>}/>
 					<Route exact path="/theater" element={<Theater/>}/>
 					<Route exact path="/music" element={<Music/>}/>
 					<Route exact path="/cinema" element={<Cinema/>}/>

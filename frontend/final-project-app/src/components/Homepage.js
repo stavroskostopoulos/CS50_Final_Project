@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 //import images
@@ -56,6 +56,8 @@ const SearchTextField = withStyles({
 
 function Homepage() {
 
+    let navigate = useNavigate();
+
     const [popular, setPopular] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
 
@@ -72,6 +74,20 @@ function Homepage() {
         }catch(err){
             setLoading(true)
             console.log("Popular fetch error!")
+        }
+    };
+
+    const searchHandle = (e) => {
+        if (e.key === "Enter") {
+            if(!e.target.value){
+                console.log("Empty search string")
+                return
+            }
+
+            console.log(e.target.value)
+            
+            navigate(`/search/${e.target.value}`)
+
         }
     };
 
@@ -105,7 +121,7 @@ function Homepage() {
                                             </InputAdornment>
                                             )
                                         }}
-                                        
+                                        onKeyPress={(e) => searchHandle(e)}
                                     />
 
                                 </div>

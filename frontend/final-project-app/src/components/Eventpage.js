@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 // import styling
@@ -68,6 +68,7 @@ const CustomTextField = withStyles({
 function Eventpage(props) {
 
     const { state } = useLocation();
+    const params = useParams();
 
     const [open, setOpen] = React.useState(false);
     const [ticketNumber, setTicketNumber] = React.useState(1);
@@ -75,7 +76,6 @@ function Eventpage(props) {
 
     const [eventData, setEventData] = React.useState();
     const [loading, setLoading] = React.useState(true);
-
 
 
     const handleOpen = () => setOpen(true);
@@ -91,7 +91,16 @@ function Eventpage(props) {
 
     const fetchInfo = async () => {
         try{
-            const eventInfoResponse = await axios.get(`http://127.0.0.1:5000/event?id=${state.id}`)
+            let eventInfoResponse;
+            if(state!==null){
+
+                eventInfoResponse = await axios.get(`http://127.0.0.1:5000/event?id=${state.id}`)
+
+            }else{
+
+                eventInfoResponse = await axios.get(`http://127.0.0.1:5000/event?id=${params.id}`)
+                
+            }
             
             setEventData(eventInfoResponse.data[0])
             setLoading(false)
