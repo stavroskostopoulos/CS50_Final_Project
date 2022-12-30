@@ -2,12 +2,28 @@ import sqlite3
 import json
 from flask import Flask,jsonify,request
 from flask_cors import CORS
+from flask_mail import Mail, Message
+import os
+
+
+app = Flask(__name__)
+
 
 CITIES = ['All', 'Litochoro', 'Athens', 'Thessaloniki', 'Spiti Koumpi', 'Sotiros', 'Katerini', 'Synora', 'Kalamata']
 MONTHS = ['All', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September','Octomber', 'November', 'December']
 YEARS = ['All', '2023', '2024', '2025']
 
-app = Flask(__name__)
+
+# Requires that "Less secure app access" be on
+# https://support.google.com/accounts/answer/6010255
+# app.config["MAIL_DEFAULT_SENDER"] = os.environ["MAIL_DEFAULT_SENDER"]
+# app.config["MAIL_PASSWORD"] = os.environ["MAIL_PASSWORD"]
+# app.config["MAIL_PORT"] = 587
+# app.config["MAIL_SERVER"] = "smtp.gmail.com"
+# app.config["MAIL_USE_TLS"] = True
+# app.config["MAIL_USERNAME"] = os.environ["MAIL_USERNAME"]
+# mail = Mail(app)
+
 
 CORS(app)
 
@@ -125,15 +141,71 @@ def cinema():
     return jsonify([dict(ix) for ix in search_results])
 
 
-@app.route('/event')
+@app.route('/event', methods=["GET", "POST"])
 def event():
 
-    event_id = request.args.get("id", "1")
+    if request.method == "POST":
 
-    conn = get_db_connection()
-    event_result = conn.execute('SELECT * FROM events WHERE id = :event_id', {"event_id": event_id}).fetchall()
-    conn.close()
-    return jsonify([dict(ix) for ix in event_result])
+        # Validate submission
+        email = request.form.get("email")
+        zone = request.form.get("zone")
+        times = request.form.get("times")
+        if times == 1:
+            times += " person"
+        else:
+            times += " people"
+        event_id = request.form.get("event_id")
+
+        conn = get_db_connection()
+        event = conn.execute('SELECT * FROM events WHERE id = :event_id', {"event_id": event_id}).fetchall()
+
+        # Update the info
+        # Days
+        if event['day'] == "1":
+            event["day"] = "1st"
+        elif event['day'] == "2":
+            event["day"] = "2nd"
+        elif event['day'] == "3":
+            event["day"] = "3rd"
+        else:
+            event['day'] += "th"
+
+        # Category
+        if event['category'] == "Theater":
+            event["category"] = "theatric performance"
+        elif event['category'] == "Cinema":
+            event["category"] = "cinematic play"
+        elif event['category'] == "Music":
+            event["category"] = "musical event"
+        else:
+            event['category'] += "athletic event"
+
+
+        # Content 
+        event["content"].replace("$","\n")
+
+        conn.close()
+
+        # Send email
+        Content = "You have made a reservation for " + times + " on the " + event['day'] + " of " 
+        + event['month'] + event['year'] + " in " + event['city'] 
+        + " for the " + event['category'] + ": " + event['title'] + ". Cost of reservation " + (zone * times) 
+        + ". \n \n \n About the event:\n " + event['content']
+
+        message = Message(Content, recipients=[email])
+        mail.send(message)
+
+        return 
+
+    else:
+            
+        event_id = request.args.get("id", "1")
+
+        conn = get_db_connection()
+        event_result = conn.execute('SELECT * FROM events WHERE id = :event_id', {"event_id": event_id}).fetchall()
+        conn.close()
+
+        return jsonify([dict(ix) for ix in event_result])
 
 
 @app.route('/search')
@@ -142,7 +214,7 @@ def search():
     search = str("%" + request.args.get("search", "%") + "%")
 
     conn = get_db_connection()
-    search_result = conn.execute('SELECT * FROM events WHERE title LIKE :search AND city LIKE :search AND content LIKE :search', {"search": search}).fetchall()
+    search_result = conn.execute('SELECT * FROM events WHERE LOWER(title) LIKE :search OR LOWER(city) LIKE :search OR LOWER(content) LIKE :search', {"search": search.lower()}).fetchall()
     conn.close()
 
     return jsonify([dict(ix) for ix in search_result])
