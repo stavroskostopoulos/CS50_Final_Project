@@ -51,14 +51,6 @@ def theater():
     city = request.args.get("city", "%")
     year = request.args.get("year", "%")
 
-
-    # if month not in MONTHS or month != "%":
-    #     # Error month
-    # if year not in YEARS or year != "%":
-    #     # Error year
-    # if city not in CITIES or city != "%":
-    #     # Error city
-
     conn = get_db_connection()
     search_results = conn.execute("SELECT * FROM events WHERE category = 'Theater' AND month LIKE :month AND year LIKE :year AND city LIKE :city", {"month": month, "year": year, "city": city}).fetchall()
     conn.close()
@@ -72,14 +64,6 @@ def sport():
     month = request.args.get("month", "%")
     city = request.args.get("city", "%")
     year = request.args.get("year", "%")
-
-
-    # if month not in MONTHS or month != "%":
-    #     # Error month
-    # if year not in YEARS or year != "%":
-    #     # Error year
-    # if city not in CITIES or city != "%":
-    #     # Error city
 
     conn = get_db_connection()
     search_results = conn.execute("SELECT * FROM events WHERE category = 'Sports' AND month LIKE :month AND year LIKE :year AND city LIKE :city", {"month": month, "year": year, "city": city}).fetchall()
@@ -96,14 +80,6 @@ def music():
     city = request.args.get("city", "%")
     year = request.args.get("year", "%")
 
-
-    # if month not in MONTHS or month != "%":
-    #     # Error month
-    # if year not in YEARS or year != "%":
-    #     # Error year
-    # if city not in CITIES or city != "%":
-    #     # Error city
-
     conn = get_db_connection()
     search_results = conn.execute("SELECT * FROM events WHERE category = 'Music' AND month LIKE :month AND year LIKE :year AND city LIKE :city", {"month": month, "year": year, "city": city}).fetchall()
     conn.close()
@@ -118,14 +94,6 @@ def cinema():
     month = request.args.get("month", "%")
     city = request.args.get("city", "%")
     year = request.args.get("year", "%")
-
-
-    # if month not in MONTHS or month != "%":
-    #     # Error month
-    # if year not in YEARS or year != "%":
-    #     # Error year
-    # if city not in CITIES or city != "%":
-    #     # Error city
 
     conn = get_db_connection()
     search_results = conn.execute("SELECT * FROM events WHERE category = 'Cinema' AND month LIKE :month AND year LIKE :year AND city LIKE :city", {"month": month, "year": year, "city": city}).fetchall()
@@ -142,15 +110,11 @@ def event():
         # Validate submission
         email = request.json["email"]
         zone = request.json["zone"]
-        times = request.json["times"]
-        
-        # print(email)
-        # print(zone)
-        # print(times)
+        times_int = str(request.json["times"])
 
-        times_int = times
+        times = str(times_int)
 
-        if times == 1:
+        if times == "1":
             times += " person"
         else:
             times += " people"
@@ -179,11 +143,11 @@ def event():
         elif event[0]['category'] == "Music":
             category_str = "musical event"
         else:
-            category_str += "athletic event"
+            category_str = "athletic event"
 
 
         # Content 
-        event[0]["content"].replace("$","\n\n")
+        event_content = event[0]["content"].replace("$","\n\n")
 
         conn.close()
 
@@ -193,8 +157,7 @@ def event():
         server.login("eventhubproject@gmail.com", "mbddnqggofzoreiu")
 
         # Send email
-        content = "You have made a reservation for " + times + " on the " + day_str + " of " + event[0]['month'] + event[0]['year'] + " in " + event[0]['city'] + " for the " + category_str + ": " + event[0]['title'] + ". Cost of reservation " + str(int(zone.split()[3]) * int(times_int)) + "€. \n \n \n About the event:\n " + event[0]['content']
-
+        content = "You have made a reservation for " + times + " on the " + day_str + " of " + event[0]['month'] + " " + event[0]['year'] + " in " + event[0]['city'] + " for the " + category_str + ": " + event[0]['title'] + ".\nCost of reservation " + str(int(zone.split()[3]) * int(times_int)) + "€. \n \n \nAbout the event:\n" + event_content
 
         msg = "\r\n".join([
             "From:" + "eventhubproject@gmail.com",
