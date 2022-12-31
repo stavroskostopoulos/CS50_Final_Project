@@ -7,7 +7,7 @@ This is our final project to conclude our CS50 journey! For our final project we
 The project is a collaboration of:
 
 -Stavros Kostopoulos (edX username: stavroskostopoulos) <br/>
--sdfsdfsdafsdafasdf
+-Giannis Symeonidis (edX username: j_symeonidis) 
 
 ## Specs
 
