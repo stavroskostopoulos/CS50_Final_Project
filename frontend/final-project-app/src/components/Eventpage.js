@@ -90,40 +90,53 @@ function Eventpage(props) {
         return re.test(email);
     }
 
-    const handleEmail = () => {
+    const handleEmail = async () => {
         try{
             
             if(!validateEmail(email)) {
-                console.log("1")
+                // console.log("1")
                 setButtonError(true)
                 return
             }
             
-            if(!Number.isInteger(ticketNumber)){
-                console.log("2")
+            if(!parseInt(ticketNumber)){
+                // console.log("2")
 
                 setButtonError(true)
                 return
             }
 
             if(parseInt(ticketNumber) < 1){
-                console.log("3")
+                // console.log("3")
 
                 setButtonError(true)
                 return
             }
 
 
-            // setButtonError(false)
-            setOpen(false)
-            const zoneNumber = parseInt(zone)
+            let event_id = (state!==null) ? `${state.id}`:`${params.id}`
 
-            // console.log(tickets[zoneNumber-1].label)
-            // await axios.post(`http://127.0.0.1:5000/email`,
-            //                 {
-                                
-            //                 }
-            // )
+
+            // setButtonError(false)
+            
+            const zoneNumber = parseInt(zone)
+            if(zoneNumber > 3 || zoneNumber < 1){
+                setButtonError(true)
+                return
+            }
+            
+            setOpen(false)
+
+            console.log(tickets[zoneNumber-1].label)
+
+            await axios.post(`http://127.0.0.1:5000/event`,
+                            {
+                                "email": email.replace(/\s+/g, ''),
+                                "zone": tickets[zoneNumber-1].label,
+                                "times": ticketNumber.toString(),
+                                "event_id": event_id
+                            }
+            )
 
         }catch(err){
             console.log(err)
@@ -161,7 +174,7 @@ function Eventpage(props) {
     };
 
     return (
-        <>
+        <div className='movie-background-container'>
             {loading && 
                 <div className='event-page-loading-container'>
                     <CircularProgress color="secondary" /> 
@@ -304,7 +317,7 @@ function Eventpage(props) {
             }
 
             
-        </>
+        </div>
     )
 }
 

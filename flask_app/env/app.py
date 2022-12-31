@@ -4,7 +4,8 @@ from flask import Flask,jsonify,request
 from flask_cors import CORS
 from flask_mail import Mail, Message
 import os
-
+import smtplib
+from email.mime.text import MIMEText
 
 app = Flask(__name__)
 
@@ -14,15 +15,7 @@ MONTHS = ['All', 'January', 'February', 'March', 'April', 'May', 'June', 'July',
 YEARS = ['All', '2023', '2024', '2025']
 
 
-# Requires that "Less secure app access" be on
-# https://support.google.com/accounts/answer/6010255
-app.config["MAIL_DEFAULT_SENDER"] = os.environ["MAIL_DEFAULT_SENDER"]
-app.config["MAIL_PASSWORD"] = os.environ["MAIL_PASSWORD"]
-app.config["MAIL_PORT"] = 587
-app.config["MAIL_SERVER"] = "smtp.gmail.com"
-app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_USERNAME"] = os.environ["MAIL_USERNAME"]
-mail = Mail(app)
+
 
 
 CORS(app)
@@ -147,59 +140,75 @@ def event():
     if request.method == "POST":
 
         # Validate submission
-        email = request.form.get("email")
-        zone = request.form.get("zone")
-        times = request.form.get("times")
+        email = request.json["email"]
+        zone = request.json["zone"]
+        times = request.json["times"]
+        
+        # print(email)
+        # print(zone)
+        # print(times)
+
+        times_int = times
 
         if times == 1:
             times += " person"
         else:
             times += " people"
 
-        event_id = request.form.get("event_id")
+        event_id = request.json["event_id"]
 
         conn = get_db_connection()
         event = conn.execute('SELECT * FROM events WHERE id = :event_id', {"event_id": event_id}).fetchall()
 
         # Update the info
         # Days
-        if event['day'] == "1":
-            event["day"] = "1st"
-        elif event['day'] == "2":
-            event["day"] = "2nd"
-        elif event['day'] == "3":
-            event["day"] = "3rd"
+        if event[0]['day'] == "1":
+            day_str = "1st"
+        elif event[0]['day'] == "2":
+            day_str = "2nd"
+        elif event[0]['day'] == "3":
+            day_str = "3rd"
         else:
-            event['day'] += "th"
+            day_str = event[0]['day'] + "th"
 
         # Category
-        if event['category'] == "Theater":
-            event["category"] = "theatric performance"
-        elif event['category'] == "Cinema":
-            event["category"] = "cinematic play"
-        elif event['category'] == "Music":
-            event["category"] = "musical event"
+        if event[0]['category'] == "Theater":
+            category_str = "theatric performance"
+        elif event[0]['category'] == "Cinema":
+            category_str = "cinematic play"
+        elif event[0]['category'] == "Music":
+            category_str = "musical event"
         else:
-            event['category'] += "athletic event"
+            category_str += "athletic event"
 
 
         # Content 
-        event["content"].replace("$","\n")
+        event[0]["content"].replace("$","\n\n")
 
         conn.close()
 
+
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login("eventhubproject@gmail.com", "mbddnqggofzoreiu")
+
         # Send email
-        Content = "You have made a reservation for " + times + " on the " + event['day'] + " of " 
-        + event['month'] + event['year'] + " in " + event['city'] 
-        + " for the " + event['category'] + ": " + event['title'] + ". Cost of reservation " + (zone * times) 
-        + "€. \n \n \n About the event:\n " + event['content']
+        content = "You have made a reservation for " + times + " on the " + day_str + " of " + event[0]['month'] + event[0]['year'] + " in " + event[0]['city'] + " for the " + category_str + ": " + event[0]['title'] + ". Cost of reservation " + str(int(zone.split()[3]) * int(times_int)) + "€. \n \n \n About the event:\n " + event[0]['content']
 
-        print(Content)
 
-        message = Message(Content, recipients=[email])
-        mail.send(message)
+        msg = "\r\n".join([
+            "From:" + "eventhubproject@gmail.com",
+            "To:" + email,
+            "Subject: Your tickets!",
+            "",
+            content
+        ])
 
-        return 
+
+        server.sendmail("eventhubproject@gmail.com", email, msg.encode("utf8"))
+
+       
+        return jsonify([dict(ix) for ix in event])
 
     else:
             
@@ -218,7 +227,7 @@ def search():
     search = str("%" + request.args.get("search", "%") + "%")
 
     conn = get_db_connection()
-    search_result = conn.execute('SELECT * FROM events WHERE LOWER(title) LIKE :search OR LOWER(city) LIKE :search OR LOWER(content) LIKE :search', {"search": search.lower()}).fetchall()
+    search_result = conn.execute('SELECT * FROM events WHERE LOWER(title) LIKE :search OR LOWER(city) LIKE :search OR LOWER(content) LIKE :search', {"search": search}).fetchall()
     conn.close()
 
     return jsonify([dict(ix) for ix in search_result])
