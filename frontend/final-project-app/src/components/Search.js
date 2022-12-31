@@ -41,7 +41,7 @@ const SearchTextField = withStyles({
     }
 })(TextField);
 
-function Theater() {
+function Theater(props) {
 
     const params = useParams();
     let navigate = useNavigate();
@@ -57,7 +57,7 @@ function Theater() {
     React.useEffect(() => {
         console.log(searchValue)
         fetchProducts()
-
+        props.setHeaderChoice(false)
     }, [searchValue])
 
     

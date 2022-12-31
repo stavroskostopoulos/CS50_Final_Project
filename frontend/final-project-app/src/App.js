@@ -29,13 +29,13 @@ function App() {
 
 				<Routes>
 					<Route exact path="/" element={<Homepage/>}/>
-					<Route exact path="/search/:searchvalue" element={<Search/>}/>
+					<Route exact path="/search/:searchvalue" element={<Search setHeaderChoice={setHeaderChoice}/>}/>
 					<Route exact path="/theater" element={<Theater/>}/>
 					<Route exact path="/music" element={<Music/>}/>
 					<Route exact path="/cinema" element={<Cinema/>}/>
 					<Route exact path="/sports" element={<Sports/>}/>
-					<Route exact path="/event/:id" element={<Eventpage/>}/>
-					<Route exact path="/movie/:id" element={<Moviepage/>}/>
+					<Route exact path="/event/:id" element={<Eventpage setHeaderChoice={setHeaderChoice}/>}/>
+					<Route exact path="/movie/:id" element={<Moviepage setHeaderChoice={setHeaderChoice}/>}/>
 					<Route exact path="/test" element={<Test/>}/>
 					
 				</Routes>

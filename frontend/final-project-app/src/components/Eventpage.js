@@ -149,6 +149,7 @@ function Eventpage(props) {
 
     React.useEffect(() => {
         fetchInfo()
+        props.setHeaderChoice(false)
     }, []);
 
     const fetchInfo = async () => {
