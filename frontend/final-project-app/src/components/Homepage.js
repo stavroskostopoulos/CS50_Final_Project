@@ -215,11 +215,11 @@ function Homepage() {
 
                         // slidesPerView={4}
                         className='popular-slider'
-                        breakpoints={{
-                            1330: {               
-                            slidesPerView: 4,
-                            },
-                        }}
+                        // breakpoints={{
+                        //     1330: {               
+                        //     slidesPerView: 4,
+                        //     },
+                        // }}
                         
                     >
                         <SwiperSlide className='categ-slider'>
